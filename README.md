@@ -1,5 +1,6 @@
 # TaskMenager
-Simple task menager
-Adding task to list
-Remove task
-Print list to tasks
+Simple task menager. 
+
+* Adding task to list
+* Remove task
+* Print list to tasks

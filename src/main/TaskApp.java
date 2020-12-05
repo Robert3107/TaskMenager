@@ -22,7 +22,7 @@ public class TaskApp {
 
 
     public static void printStart() {
-        String info = ConsoleColors.BLUE_BOLD + "----------" + NAME_APP + "----------";
+        String info = "\n" + ConsoleColors.BLUE_BOLD + "----------" + NAME_APP + "----------";
         System.out.println(info);
     }
 
@@ -44,27 +44,18 @@ public class TaskApp {
             String option = scr.nextLine();
 
             switch (option) {
-                case ADD_TASK:
-                    addTask();
-                    break;
-
-                case REMOVE_TASK:
+                case ADD_TASK -> addTask();
+                case REMOVE_TASK -> {
                     removeTask(tasks, checkNumber());
                     System.out.println("Zadanie zostało usunięte.");
-                    break;
-
-                case LIST:
-                    printTasks(tasks);
-                    break;
-
-                case EXIT:
+                }
+                case LIST -> printTasks(tasks);
+                case EXIT -> {
                     exitAndSave(FILE_NAME, tasks);
-                    System.out.println("Koniec programu");
+                    System.out.println(ConsoleColors.BLUE_BOLD + "Koniec programu");
                     System.exit(0);
-                    break;
-
-                default:
-                    System.err.println("Wybierz właściwą opcję.");
+                }
+                default -> System.err.println("Wybierz właściwą opcję.");
             }
             printInfo();
         }
@@ -146,9 +137,7 @@ public class TaskApp {
 
             for (int i = 0; i < strings.size(); i++) {
                 String[] split = strings.get(i).split(",");
-                for (int j = 0; j < split.length; j++) {
-                    tab[i][j] = split[j];
-                }
+                System.arraycopy(split, 0, tab[i], 0, split.length);
             }
         } catch (IOException e) {
             e.printStackTrace();
